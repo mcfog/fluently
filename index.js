@@ -14,7 +14,6 @@ function tap(cb) {
 
 	return this;
 }
-
 function iteratorMethod(method) {
 	return function(obj) {
 		var flu = this;
@@ -23,6 +22,17 @@ function iteratorMethod(method) {
 		});
 
 		return this;
+	};
+}
+function once(fn) {
+	var runned = false, result;
+	return function() {
+		if(runned) {
+			return result;
+		}
+
+		runned = true;
+		return result = fn.apply(this, arguments);
 	};
 }
 
@@ -71,6 +81,20 @@ Fluently.prototype = Object.freeze({
 
 		return this;
 	},
+	"getter": function(name, getter) {
+		if(this._target[name] !== undefined) {
+			throw new Error('Fluently: define something twice');
+		}
+
+		Object.defineProperty(this._target, name, {
+			get: getter
+		});
+
+		return this;
+	},
+	"onceGetter": function(name, getter) {
+		return this.defineGetter(name, once(getter));
+	},
 	"defineObj": iteratorMethod('define'),
 
 	"override": function(name, value) {
@@ -106,9 +130,22 @@ Fluently.prototype = Object.freeze({
 		return this.define(name, tap);
 	},
 
-	"defineBlock": function(begin, end, block) {
+	"block": function(begin, end, block) {
 		create(block).define(end, this._target);
 		this.define(begin, block);
+
+		return this;
+	},
+
+	"getterBlock": function(begin, end, getter) {
+		var self = this;
+
+		this.defineOnceGetter(begin, function() {
+			var block = getter();
+			create(block).define(end, self._target);
+
+			return block;
+		});
 
 		return this;
 	},

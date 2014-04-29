@@ -232,7 +232,7 @@ describe("tap", function() {
 	});
 });
 
-describe("defineBlock", function() {
+describe("block", function() {
 	it("works", function() {
 		var obj = {};
 		var flu = fluently(obj);
@@ -242,7 +242,7 @@ describe("defineBlock", function() {
 
 		var passed = false;
 
-		expect(flu.defineBlock(open, close, block)).to.equal(flu);
+		expect(flu.block(open, close, block)).to.equal(flu);
 
 		expect(obj[open]).to.equal(block);
 		expect(block[close]).to.equal(obj);
