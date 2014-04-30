@@ -1,6 +1,6 @@
 {
   "name": "fluently",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "a small nodejs util to make fluently api fluently ",
   "main": "index.js",
   "scripts": {
