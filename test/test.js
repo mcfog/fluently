@@ -248,3 +248,50 @@ describe("block", function() {
 		expect(block[close]).to.equal(obj);
 	});
 });
+
+describe("getter", function() {
+	it("works", function() {
+		var obj = {};
+		var flu = fluently(obj);
+		var name = uniq();
+		var value;
+
+		var passed = false;
+
+		expect(flu.getter(name, function() {
+			expect(this).to.equal(obj);
+			passed = true;
+
+			value = uniq();
+			
+			return value;
+		})).to.equal(flu);
+
+		expect(obj[name]).to.equal(value);
+		expect(passed).to.be.true;
+	});
+});
+
+describe("getterBlock", function() {
+	it("works", function() {
+		var obj = {};
+		var flu = fluently(obj);
+		var open = uniq();
+		var close = uniq();
+		var block = {};
+
+		var passed = false;
+
+		expect(flu.getterBlock(open, close, function() {
+			expect(this).to.equal(obj);
+			passed = true;
+
+			return block;
+		})).to.equal(flu);
+
+		expect(obj[open]).to.equal(block);
+		expect(block[close]).to.equal(obj);
+
+		expect(passed).to.be.true;
+	});
+});
