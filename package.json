@@ -7,7 +7,7 @@
 	"dependencies":
 	{
 	},
-	"description": "a small nodejs util to make fluently api fluently ",
+	"description": "a small nodejs util to make fluently api fluently",
 	"devDependencies":
 	{
 		"chai": "^1.9.1",
@@ -41,5 +41,5 @@
 	{
 		"test": "mocha"
 	},
-	"version": "0.0.2"
+	"version": "0.0.3"
 }
