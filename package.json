@@ -1,32 +1,45 @@
 {
-  "name": "fluently",
-  "version": "0.0.2",
-  "description": "a small nodejs util to make fluently api fluently ",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mcfog/fluently.git"
-  },
-  "keywords": [
-    "util",
-    "utility",
-    "chaining",
-    "fluent",
-    "fluently"
-  ],
-  "author": "mcfog",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mcfog/fluently/issues"
-  },
-  "homepage": "https://github.com/mcfog/fluently",
-  "dependencies": {},
-  "devDependencies": {
-    "mocha": "^1.18.2",
-    "mocha-jshint": "0.0.7",
-    "chai": "^1.9.1"
-  }
+	"author": "mcfog",
+	"bugs":
+	{
+		"url": "https://github.com/mcfog/fluently/issues"
+	},
+	"dependencies":
+	{
+	},
+	"description": "a small nodejs util to make fluently api fluently ",
+	"devDependencies":
+	{
+		"chai": "^1.9.1",
+		"mocha": "^1.18.2",
+		"mocha-jshint": "0.0.7"
+	},
+	"folders":
+	[
+		{
+			"path": "/home/mcfog/workspace/lifesaver/node_modules/fluently"
+		}
+	],
+	"homepage": "https://github.com/mcfog/fluently",
+	"keywords":
+	[
+		"util",
+		"utility",
+		"chaining",
+		"fluent",
+		"fluently"
+	],
+	"license": "MIT",
+	"main": "index.js",
+	"name": "fluently",
+	"repository":
+	{
+		"type": "git",
+		"url": "git://github.com/mcfog/fluently.git"
+	},
+	"scripts":
+	{
+		"test": "mocha"
+	},
+	"version": "0.0.2"
 }

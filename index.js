@@ -93,7 +93,15 @@ Fluently.prototype = Object.freeze({
 		return this;
 	},
 	"onceGetter": function(name, getter) {
-		return this.getter(name, once(getter));
+		return this.getter(name, function() {
+			var result = getter.apply(this, arguments);
+
+			Object.defineProperty(this, name, {
+				configurable: false,
+				value: result
+			});
+			return result;
+		});
 	},
 	"defineObj": iteratorMethod('define'),
 
@@ -142,7 +150,7 @@ Fluently.prototype = Object.freeze({
 
 		this.onceGetter(begin, function() {
 			var block = getter.call(this);
-			create(block).define(end, self._target);
+			create(block).define(end, this);
 
 			return block;
 		});

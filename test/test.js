@@ -274,24 +274,27 @@ describe("getter", function() {
 
 describe("getterBlock", function() {
 	it("works", function() {
-		var obj = {};
-		var flu = fluently(obj);
+		function Klass() {
+			this.uniq = uniq();
+		}
+		var flu = fluently(Klass.prototype);
 		var open = uniq();
 		var close = uniq();
-		var block = {};
-
-		var passed = false;
+		var Block = function(obj) {
+			this.arg = obj;
+		};
 
 		expect(flu.getterBlock(open, close, function() {
-			expect(this).to.equal(obj);
-			passed = true;
-
-			return block;
+			return new Block(this);
 		})).to.equal(flu);
 
-		expect(obj[open]).to.equal(block);
-		expect(block[close]).to.equal(obj);
+		expectObjOk(new Klass());
+		expectObjOk(new Klass());//yep, twice. to see if block is on object but not prototype
 
-		expect(passed).to.be.true;
+		function expectObjOk(obj) {
+			expect(obj[open][close]).to.equal(obj);
+			expect(obj[open]).to.be.instanceof(Block);
+			expect(obj[open].arg).to.equal(obj);
+		}
 	});
 });
